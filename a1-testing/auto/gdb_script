@@ -1,0 +1,22 @@
+
+# Note: Normally, `catch signal SIGSEGV commands ... end` would be sufficient
+#       but that doesn't seem to work on CDF, so we have this ugly hack.
+
+# Tell GDB to defer to the program's signal handlers.
+handle SIGSEGV print nostop pass
+handle SIGABRT print nostop pass
+handle SIGALRM print nostop pass
+
+# When the signals of interest are triggered, GDB will pass control to the
+# signal handlers installed in test_main.c. These  will trigger a breakpoint
+# in GDB that will tell GDB to dump all thread stacks then quit.
+b DumpStack
+commands
+f 2
+thread apply all bt
+q
+end
+
+# Run the program, then quit.
+r
+q

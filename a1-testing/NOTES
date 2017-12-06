@@ -1,0 +1,11 @@
+The scripts testone and runone expect to find the code in ./<cdfid>/
+
+runone - runs the students test_malloc against each of the traces in
+the directory traces.  These traces include the two that students
+had available.  These traces were used most heavily by the TAs during
+grading.
+
+testone - runs the auto-testing program in the directory auto.
+This is a more sophisticated set of tests.  They are also harder
+to understand as far as the output goes.  There were more single
+thread traces in this set.

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+student=$1
+
+auto/copy.sh $student
+auto/make.sh $student
+auto/test.sh $student

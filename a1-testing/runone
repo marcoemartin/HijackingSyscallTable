@@ -1,0 +1,40 @@
+#!/bin/bash
+
+student=$1
+dir=$HOME/369/a1
+
+echo "^^^^^^^^^^^^^  $d    ^^^^^^^^^^^^^^^^^^^^^^"
+if grep "#define SYSTEM_MALLOC 1" $d/*.[ch] >& /dev/null
+then
+	if grep "#if SYSTEM_MALLOC" $d/mymemory.c >& /dev/null
+	then
+		echo "$d USING SYSTEM MALLOC?" 
+	fi
+fi
+
+cd $student
+cp ./test_malloc.c student_test_malloc.c
+cp $dir/testing/trace_tester.c test_malloc.c
+
+echo "#######################################################"
+echo "# $student"
+echo ""
+echo "# make test_malloc"
+
+make test_malloc
+
+echo "#----------------------------------------------------"
+echo "# ./test_malloc $dir/testing/0.short.trace"
+./test_malloc $dir/testing/0.short.trace
+echo "#----------------------------------------------------"
+echo "# ./test_malloc $dir/testing/1.longrandom.trace"
+./test_malloc $dir/testing/1.longrandom.trace
+echo "#----------------------------------------------------"
+echo "# ./test_malloc $dir/testing/2.corners.trace"
+./test_malloc $dir/testing/2.corners.trace
+echo "#----------------------------------------------------"
+echo "# ./test_malloc $dir/testing/4.reallocate.trace"
+./test_malloc $dir/testing/4.reallocate.trace
+echo "#----------------------------------------------------"
+echo "# ./test_malloc $dir/testing/5.parallel_allocs.trace"
+./test_malloc $dir/testing/5.parallel_allocs.trace
